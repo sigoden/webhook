@@ -65,7 +65,7 @@ However, hook defined like that could pose a security threat to your system, bec
 [webhook](https://github.com/sigoden/webhook/) by default serves hooks using http. If you want [webhook](https://github.com/sigoden/webhook/) to serve secure content using https, you can use the `--secure` flag while starting [webhook](https://github.com/sigoden/webhook/). Files containing a certificate and matching private key for the server must be provided using the `--cert /path/to/cert.pem` and `--key /path/to/key.pem` flags. If the certificate is signed by a certificate authority, the cert file should be the concatenation of the server's certificate followed by the CA's certificate.
 
 # CORS Headers
-If you want to set CORS headers, you can use the `-header name=value` flag while starting [webhook](https://github.com/sigoden/webhook/) to set the appropriate CORS headers that will be returned with each response.
+If you want to set CORS headers, you can use the `--header name=value` flag while starting [webhook](https://github.com/sigoden/webhook/) to set the appropriate CORS headers that will be returned with each response.
 
 # Examples
 Check out [Hook examples page](https://github.com/sigoden/webhook/wiki/Hook-Examples) for more complex examples of hooks.
