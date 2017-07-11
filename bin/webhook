@@ -56,16 +56,20 @@ const argv = require('yargs')
   .wrap(null)
   .argv
 
-let log = require('../lib/log')
-let signal = require('../lib/signal')
-let Hook = require('../lib/hook')
-let chokidar = require('chokidar')
-let server = require('../lib/server')
-let http = require('http')
-let https = require('https')
-let absolutePath = require('../lib/absolute-path')
-let fs = require('fs')
-let cwd = process.cwd()
+const log = require('../lib/log')
+const signal = require('../lib/signal')
+const Hook = require('../lib/hook')
+const chokidar = require('chokidar')
+const server = require('../lib/server')
+const http = require('http')
+const https = require('https')
+const absolutePath = require('../lib/absolute-path')
+const fs = require('fs')
+const cwd = process.cwd()
+const pkg = require('../package.json');
+const updateNotifier = require('update-notifier');
+
+updateNotifier({pkg}).notify();
 
 if (argv.verbose) process.env.LOG = true
 

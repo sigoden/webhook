@@ -33,6 +33,7 @@
     "object-path": "^0.11.4",
     "printf": "^0.2.5",
     "range_check": "^1.4.0",
+    "update-notifier": "^2.2.0",
     "yargs": "^8.0.2"
   },
   "devDependencies": {
