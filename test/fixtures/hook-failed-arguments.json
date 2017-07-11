@@ -1,0 +1,44 @@
+[
+  {
+    "id": "argument-cmd-failed",
+    "execute-command": "/tmp/test.sh",
+    "command-working-directory": "/tmp",
+    "response-message": "I got the payload!",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "noref"
+      }
+    ],
+    "pass-environment-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "pusher.username",
+        "envname": "USER"
+      }
+    ]
+  },
+  {
+    "id": "argument-env-failed",
+    "execute-command": "/tmp/test.sh",
+    "command-working-directory": "/tmp",
+    "response-message": "I got the payload!",
+    "pass-arguments-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "ref"
+      }
+    ],
+    "pass-environment-to-command":
+    [
+      {
+        "source": "payload",
+        "name": "pusher.nousername",
+        "envname": "USER"
+      }
+    ]
+  }
+]

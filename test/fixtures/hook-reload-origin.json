@@ -1,0 +1,7 @@
+[
+  {
+    "id": "reload",
+    "execute-command": "/tmp/run.sh",
+    "command-working-directory": "/tmp"
+  }
+]

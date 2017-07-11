@@ -1,0 +1,51 @@
+{
+  "name": "webhook-server",
+  "version": "0.0.1",
+  "description": "webhook-server is a lightweight configurable tool written in NodeJS, that allows you to easily create HTTP endpoints (hooks) on your server, which you can use to execute configured commands",
+  "license": "MIT",
+  "repository": "sigoden/webhook",
+  "homepage": "https://github.com/sigoden/webhook",
+  "main": "index.js",
+  "author": {
+    "name": "sigoden",
+    "email": "sigoden@gmail.com",
+    "url": "sigoden.com"
+  },
+  "maintainers": [
+    {
+      "name": "sigoden",
+      "email": "sigoden@gmail.com",
+      "url": "sigoden.com"
+    }
+  ],
+  "bin": "./bin/webhook-server",
+  "engines": {
+    "node": ">=4"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "chokidar": "^1.7.0",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.15.3",
+    "http-status-codes": "^1.1.6",
+    "is-relative": "^0.2.1",
+    "moment": "^2.18.1",
+    "object-path": "^0.11.4",
+    "printf": "^0.2.5",
+    "range_check": "^1.4.0",
+    "yargs": "^8.0.2"
+  },
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "superagent": "^3.5.2"
+  },
+  "scripts": {
+    "test": "npm run test-unit && npm run test-integration",
+    "test-unit": "ava ./test/unit/**/*test.js --verbose",
+    "test-integration": "ava ./test/test.js --verbose"
+  },
+  "keywords": [
+    "webhook",
+    "cli"
+  ]
+}

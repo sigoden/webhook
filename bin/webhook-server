@@ -1,0 +1,128 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const argv = require('yargs')
+  .usage('Usage of $0:')
+  .option('header', {
+    type: 'array',
+    description: 'response header to return, specified in format name=value, use multiple times to set multiple headers'
+  })
+  .option('hooks', {
+    type: 'array',
+    default: 'hooks.json',
+    description: 'path to the json file containing defined hooks the webhook should serve, use multiple times to load from different files'
+  })
+  .option('hotreload', {
+    type: 'boolean',
+    description: 'watch hooks file for changes and reload them automatically'
+  })
+  .option('ip', {
+    type: 'string',
+    default: '0.0.0.0',
+    description: 'ip the webhook should serve hooks on'
+  })
+  .option('port', {
+    type: 'number',
+    default: 9000,
+    description: 'port the webhook should serve hooks on'
+  })
+  .option('secure', {
+    type: 'boolean',
+    default: false,
+    description: 'use HTTPS instead of HTTP'
+  })
+  .option('cert', {
+    type: 'string',
+    default: 'cert.pem',
+    description: 'path to the HTTPS certificate pem file'
+  })
+  .option('key', {
+    type: 'string',
+    default: 'key.pem',
+    description: 'path to the HTTPS certificate private key pem file'
+  })
+  .option('urlprefix', {
+    type: 'string',
+    default: 'hooks',
+    description: 'url prefix to use for served hooks (protocol://yourserver:port/PREFIX/:hook-id)'
+  })
+  .option('verbose', {
+    type: 'boolean',
+    description: 'show verbose output'
+  })
+  .version()
+  .help('help')
+  .wrap(null)
+  .argv
+
+let log = require('../lib/log')
+let signal = require('../lib/signal')
+let Hook = require('../lib/hook')
+let chokidar = require('chokidar')
+let server = require('../lib/server')
+let http = require('http')
+let https = require('https')
+let absolutePath = require('../lib/absolute-path')
+let fs = require('fs')
+let cwd = process.cwd()
+
+if (argv.verbose) process.env.LOG = true
+
+log('webhook starting')
+signal()
+
+Hook.loadFiles(argv.hooks, cwd)
+
+if (argv.hotreload) {
+  chokidar.watch(Hook.hookFileList)
+    .on('change', hookFile => {
+      log('hooks file %s have changed, reloading', hookFile)
+      Hook.reloadFile(hookFile)
+    })
+}
+
+let hookHeaders = {}
+let rHeader = /^(\S+?)=(\S+)$/
+if (Array.isArray(argv.header)) {
+  for (let header of argv.header) {
+    let re = rHeader.exec(header)
+    if (re) {
+      hookHeaders[re[1]] = re[2]
+    }
+  }
+}
+
+let serverOptions = {
+  hooksUrl: '/:id',
+  hookHeaders,
+  ip: argv.ip,
+  port: argv.port
+}
+
+if (argv.urlprefix) {
+  serverOptions.hooksUrl = '/' + argv.urlprefix + '/:id'
+}
+
+let app = server(serverOptions)
+
+if (argv.secure) {
+  let httpsOptions = {
+    key: readAsync(argv.key),
+    cert: readAsync(argv.cert)
+  }
+  https.createServer(httpsOptions, app).listen(argv.port, argv.ip)
+  log('serving hooks on https://%s:%d%s', argv.ip, argv.port, serverOptions.hooksUrl)
+} else {
+  http.createServer(app).listen(argv.port, argv.ip)
+  log('serving hooks on http://%s:%d%s', argv.ip, argv.port, serverOptions.hooksUrl)
+}
+
+function readAsync (filePath) {
+  let absoluteFilePath = absolutePath(filePath, cwd)
+  try {
+    return fs.readFileSync(absoluteFilePath)
+  } catch (e) {
+    log('read file %s failed with error %s', filePath, e)
+  }
+}

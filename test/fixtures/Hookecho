@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+function filterObjectProperties (obj, prefix) {
+  var rPrefix = new RegExp('^' + prefix)
+  var result = {}
+  for (var k in obj) {
+    if (rPrefix.test(k)) {
+      result[k] = obj[k]
+    }
+  }
+  return result
+}
+
+function printObjectProperties(obj) {
+  var output = ''
+  for (var k in obj) {
+    if (output) output += ' ' 
+    output = k + '=' + obj[k]
+  }
+  return output
+}
+
+var env = printObjectProperties(filterObjectProperties(process.env, 'HOOK_'))
+process.stdout.write('env: ' + env + '\n')
+process.stdout.write('arg: ' + process.argv.slice(2).join(' ') + '\n')

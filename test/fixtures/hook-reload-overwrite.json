@@ -1,0 +1,7 @@
+[
+  {
+    "id": "overwrite",
+    "execute-command": "/tmp/run.sh",
+    "command-working-directory": "/tmp"
+  }
+]
