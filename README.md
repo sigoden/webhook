@@ -1,4 +1,8 @@
 # What is webhook?
+
+[![build](https://travis-ci.org/sigoden/webhook.svg?branch=master)](https://travis-ci.org/sigoden/webhook)
+[![npm](https://img.shields.io/npm/v/webhook-cli.svg)](https://www.npmjs.com/package/webhook-cli)
+
 [webhook](https://github.com/sigoden/webhook/) is a lightweight configurable tool written in NodeJS, that allows you to easily create HTTP endpoints (hooks) on your server, which you can use to execute configured commands. You can also pass data from the HTTP request (such as headers, payload or query variables) to your commands. [webhook](https://github.com/sigoden/webhook/) also allows you to specify rules which have to be satisfied in order for the hook to be triggered.
 
 For example, if you're using Github or Bitbucket, you can use [webhook](https://github.com/sigoden/webhook/) to set up a hook that runs a redeploy script for your project on your staging server, whenever you push changes to the master branch of your project.
