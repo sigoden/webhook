@@ -21,7 +21,7 @@ Everything else is the responsibility of the command's author.
 Install it with npm
 
 ```
-npm install -g webhook-server
+npm install -g webhook-cli
 ```
 
 ## Configuration
@@ -42,7 +42,7 @@ Our `hooks.json` file will now look like this:
 
 You can now run [webhook](https://github.com/sigoden/webhook/) using
 ```bash
-$ webhook-server --hooks hooks.json -verbose
+$ webhook --hooks hooks.json -verbose
 ```
 
 It will start up on default port 9000 and will provide you with one HTTP endpoint

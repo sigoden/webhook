@@ -1,6 +1,6 @@
 # Webhook parameters
 ```
-Usage of ./webhook:
+Usage of webhook:
   --cert string
     	path to the HTTPS certificate pem file (default "cert.pem")
   --header value
@@ -30,5 +30,5 @@ Use any of the above specified flags to override their default behavior.
 # Live reloading hooks
 If you are running an OS that supports USR1 signal, you can use it to trigger hooks reload from hooks file, without restarting the webhook instance.
 ```bash
-kill -USR1 webhook-server-pid
+kill -USR1 webhook-pid
 ```

@@ -14,7 +14,7 @@ let url, configPath, pid
 test.before(async t => {
   let port = await getPort()
   configPath = genConfig(fixturesPath, 'hook.json.tmpl', path.join(fixturesPath, 'Hookecho'))
-  pid = spawn(path.join(__dirname, '../bin/webhook-server'),
+  pid = spawn(path.join(__dirname, '../bin/webhook'),
     [
       '--hooks', configPath,
       '--ip', path.join(ip),

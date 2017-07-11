@@ -1,7 +1,7 @@
 {
-  "name": "webhook-server",
+  "name": "webhook-cli",
   "version": "0.0.1",
-  "description": "webhook-server is a lightweight configurable tool written in NodeJS, that allows you to easily create HTTP endpoints (hooks) on your server, which you can use to execute configured commands",
+  "description": "webhook-cli is a lightweight configurable tool written in NodeJS, that allows you to easily create HTTP endpoints (hooks) on your server, which you can use to execute configured commands",
   "license": "MIT",
   "repository": "sigoden/webhook",
   "homepage": "https://github.com/sigoden/webhook",
@@ -18,7 +18,7 @@
       "url": "sigoden.com"
     }
   ],
-  "bin": "./bin/webhook-server",
+  "bin": "./bin/webhook",
   "engines": {
     "node": ">=4"
   },
