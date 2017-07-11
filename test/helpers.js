@@ -25,8 +25,8 @@ function getPort () {
 }
 
 function waitForServer (url, interval, count) {
-  interval = interval ? interval : 500
-  count = count ? count : 20
+  interval = interval || 500
+  count = count || 20
   function wait (cb) {
     function retry () {
       setTimeout(check, interval)
