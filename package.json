@@ -1,6 +1,6 @@
 {
   "name": "webhook-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "webhook-cli is a lightweight configurable tool written in NodeJS, that allows you to easily create HTTP endpoints (hooks) on your server, which you can use to execute configured commands",
   "license": "MIT",
   "repository": "sigoden/webhook",
