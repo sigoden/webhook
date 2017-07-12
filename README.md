@@ -70,14 +70,6 @@ If you want to set CORS headers, you can use the `--header name=value` flag whil
 # Examples
 Check out [Hook examples page](https://github.com/sigoden/webhook/wiki/Hook-Examples) for more complex examples of hooks.
 
-# Contributing
-Any form of contribution is welcome and highly appreciated.
-
-Big thanks to [all the current contributors](https://github.com/sigoden/webhook/graphs/contributors) for their contributions!
-
-# Community Contributions
-See the [webhook-contrib][wc] repository for a collections of tools and helpers related to [webhook][w] that have been contributed by the [webhook][w] community.
-
 # Note
 There is go version [webhook](https://github.com/adnanh/webhook/), it's awesome and you can try it. I just rewrite that webhook in NodeJS, the concepts, config and doc is almost same.
 
